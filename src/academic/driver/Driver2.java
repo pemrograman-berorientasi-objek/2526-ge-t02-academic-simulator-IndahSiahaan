@@ -4,49 +4,43 @@ import academic.model.Student;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * @author 12S24052 Indah Triyuni Siahaan
+ */
 public class Driver2 {
-    public static void main(String[] args) {
+
+    public static void main(String[] _args) {
         Scanner input = new Scanner(System.in);
         ArrayList<Student> students = new ArrayList<>();
 
-        System.out.println("Masukkan data mahasiswa (ID#Nama#Tahun#Jurusan), ketik '---' untuk berhenti:");
-
-        while (input.hasNextLine()) {
+        while (true) {
             String line = input.nextLine();
 
             if (line.equals("---")) {
-                break;
+                break; // Stop reading input
             }
 
-            // Penanganan error: Memastikan format input benar
+            // Parse the input line
             String[] parts = line.split("#");
-            if (parts.length != 4) {
-                System.err.println("Error: Format input tidak valid. Harap gunakan format ID#Nama#Tahun#Jurusan.");
-                continue; // Lanjutkan ke input berikutnya
-            }
-
-            try {
+            if (parts.length == 4) { // Ensure correct number of parts
                 String id = parts[0];
                 String name = parts[1];
-                String year = parts[2]; // Tahun dianggap String sesuai contoh input
+                int entryYear = Integer.parseInt(parts[2]); // Convert entryYear to int
                 String major = parts[3];
 
-                Student newStudent = new Student(id, name, year, major);
-                students.add(newStudent);
-            } catch (Exception e) {
-                System.err.println("Error tak terduga saat memproses baris: " + line + " - " + e.getMessage());
+                Student student = new Student(id, name, entryYear, major);
+                students.add(student);
+            } else {
+                // Optionally handle malformed input lines
+                System.err.println("Input format error: " + line);
             }
         }
 
-        System.out.println("\n--- Daftar Mahasiswa Tersimpan ---");
-        if (students.isEmpty()) {
-            System.out.println("Tidak ada mahasiswa yang tersimpan.");
-        } else {
-            for (Student student : students) {
-                System.out.println(student.toString());
-            }
-        }
+        input.close(); // Close the scanner to prevent resource leak
 
-        input.close();
+        // Display all stored students
+        for (Student student : students) {
+            System.out.println(student);
+        }
     }
 }

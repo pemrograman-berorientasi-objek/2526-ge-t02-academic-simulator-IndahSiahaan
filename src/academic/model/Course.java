@@ -1,36 +1,35 @@
 package academic.model;
 
 public class Course {
-    private String code;
-    private String name;
-    private int credits;
-    private String gradeCategory; // Added to match the 4-field output (e.g., 'C', 'D')
+   private String code;
+   private String name;
+   private int credits;
+   private String grade;
 
-    public Course(String code, String name, int credits, String gradeCategory) {
-        this.code = code;
-        this.name = name;
-        this.credits = credits;
-        this.gradeCategory = gradeCategory;
-    }
+   public Course(String var1, String var2, int var3, String var4) {
+      this.code = var1;
+      this.name = var2;
+      this.credits = var3;
+      this.grade = var4;
+   }
 
-    public String getCode() {
-        return code;
-    }
+   public String getCode() {
+      return this.code;
+   }
 
-    public String getName() {
-        return name;
-    }
+   public String getName() {
+      return this.name;
+   }
 
-    public int getCredits() {
-        return credits;
-    }
+   public int getCredits() {
+      return this.credits;
+   }
 
-    public String getGradeCategory() {
-        return gradeCategory;
-    }
+   public String getGrade() {
+      return this.grade;
+   }
 
-    @Override
-    public String toString() {
-        return code + "|" + name + "|" + credits + "|" + gradeCategory;
-    }
+   public String toString() {
+      return this.code + "|" + this.name + "|" + this.credits + "|" + this.grade;
+   }
 }
